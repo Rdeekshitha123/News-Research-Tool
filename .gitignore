@@ -1,4 +1,4 @@
 venv/
 faiss_index_gemini/
-*.pyc
+*.pkl
 .DS_Store
