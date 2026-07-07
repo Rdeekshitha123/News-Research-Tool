@@ -1,5 +1,4 @@
 venv/
-.env
 faiss_index_gemini/
 *.pyc
 .DS_Store
