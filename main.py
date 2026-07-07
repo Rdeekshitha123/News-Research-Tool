@@ -39,7 +39,7 @@ if process_url_clicked:
         st.stop()
 
     loader = UnstructuredURLLoader(urls=valid_urls)
-    main_placeholder.text("Data Loading...Started...✅✅✅")
+    main_placeholder.text("Data Loading.Started.")
     data = loader.load()
 
     if len(data) == 0:
@@ -54,7 +54,7 @@ if process_url_clicked:
         separators=['\n\n', '\n', '.', ','],
         chunk_size=1000
     )
-    main_placeholder.text("Text Splitter...Started...✅✅✅")
+    main_placeholder.text("Text Splitter.Started.")
     docs = text_splitter.split_documents(data)
 
     if len(docs) == 0:
@@ -67,13 +67,13 @@ if process_url_clicked:
     # Build a NEW FAISS index from the freshly scraped documents
     embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     vectorstore_gemini = FAISS.from_documents(docs, embeddings)
-    main_placeholder.text("Embedding Vector Started Building...✅✅✅")
+    main_placeholder.text("Embedding Vector Started Building.")
     time.sleep(2)
 
     # Save using FAISS's own method (avoids the pickle thread-lock error)
     vectorstore_gemini.save_local(index_path)
 
-    main_placeholder.text("Processing complete! You can now ask a question below. ✅✅✅")
+    main_placeholder.text("Processing complete! You can now ask a question below.")
 
 query = main_placeholder.text_input("Question: ")
 if query:
